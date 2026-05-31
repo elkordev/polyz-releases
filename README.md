@@ -1,7 +1,16 @@
 # polyz-releases
 
-Release artifacts for the [Polyz](https://polyz.app) desktop app.
+Public release artifacts for the [Polyz](https://polyz.app) desktop app.
 
-This repo holds only the built binaries (dmg/zip/blockmaps) and `latest-mac.yml` auto-update manifest. **No source code lives here** — source is in a separate private repo. The landing site at polyz.app proxies downloads from this repo via a server-side token; this repo never needs to be public for users to install.
+Holds the built installers (`dmg`/`exe`), auto-update `zip`s + blockmaps,
+and the `latest-mac.yml` / `latest.yml` update manifests. **No source code
+lives here** — source is in a separate private repo.
 
-Releases are produced by `npm run release` from the source repo.
+This repo is **public** so `electron-updater` and direct downloads can fetch
+releases anonymously. The app is gated at **runtime**, not at download:
+using it requires a signed-in account with an active subscription or trial,
+so a freely-obtained binary is unusable (no new writing, no AI, no sync)
+without a paid plan.
+
+Releases are produced by `npm run release` from the source repo (macOS:
+built, signed, and notarized locally) plus the Windows CI workflow.
